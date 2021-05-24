@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# This script was made by Cody Ratterman for running NCL programs analyzing 
+# climate study ensemble data created by the "ensemble_plasim_run" script.
+#
+# Uses recursion to run all ".ncl" code with "ncl" command.
+# First it runs all ncl code in the current directory.
+# Next it runs through each sub-directory in alphabetical order
+# When multiple ncl files are in the same directory they are run in alphabetical order.
+# The "ncl_output.txt" files contain ncl output for all code within each directory.
+
+main() {
+    # Run ncl scripts in current script directory.
+    clean_up
+    for j in `ls *.ncl 2> /dev/null`
+    do
+        echo "$j"
+        echo "-----#####----- $j -----#####-----" >> ncl_output.txt
+        echo "" >> ncl_output.txt
+        ncl "$j" >> ncl_output.txt
+        echo "" >> ncl_output.txt
+    done
+    search_directory # search sub-directories
+}
+
+# Remove pre-existing ".png" and "ncl_output.txt" files.
+# If no errors occur, they will be replaced when ncl code is ran.
+clean_up () {
+    rm *.png 2> /dev/null
+    rm ncl_output.txt 2> /dev/null
+}
+
+# Loop over each subdirectory then each 
+search_directory() {
+    for i in `ls -d */ 2> /dev/null` 
+    do
+        cd "$i"
+        main
+        cd ..       # return to previous directory (eventually ending at script directory)
+    done
+}
+
+# read command parameter(s) and call main function
+[ $# == 1 ] && cd $1
+echo Running `find . -type f -name "*.ncl" | wc -l` ncl files...
+main "$@"; exit
