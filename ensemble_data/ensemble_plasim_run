@@ -37,6 +37,7 @@ for (( num=$STARTNUM; num<=$ENDNUM; num++ )); do # loop for each run number from
     
     cd $ENSEMBLEDIR                 # go into new run directory
     rm PostProcessing/PP_NL_*
+    rm -r suggested_namelists/
     echo "ensemble run $num in progress" >> ../ensemble_status.txt
    
     sed -i -e 's/EXP=.*/EXP=ensemble.'$(printf '%02d' $num)'/' most_plasim_run_mod # <----- rename models here

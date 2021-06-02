@@ -100,7 +100,7 @@ run_section () {
         DATANAME=`printf '%s.%03d' $EXP $YEAR`
         DIAGNAME=`printf '%s_DIAG.%03d' $EXP $YEAR`
         RESTNAME=`printf '%s_REST.%03d' $EXP $YEAR`
-        mpiexec -np 2 most_plasim_t21_l10_p2.x
+        mpiexec -np $(find ./*.x -executable | cut -d '_' -f 5 | cut -d 'p' -f 2 | cut -d '.' -f 1) $(find ./*.x -executable)
         [ -e Abort_Message ] && exit 1
         [ -e plasim_output ] && mv plasim_output $DIRNAME/$DATANAME
         [ -e plasim_diag ] && mv plasim_diag $DIRNAME/$DIAGNAME
