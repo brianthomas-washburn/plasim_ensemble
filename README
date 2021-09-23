@@ -8,7 +8,7 @@ Following software components are necessary for running the models:
 4. make       utility  (make, gmake)
 5. X11        include  (/usr/X11/include, /usr/X11R6/include)
 6. X11        library  (/usr/X11/lib64    /usr/X11/lib)
-7. NCL    plot software (https://www.ncl.ucar.edu/Download/list_of_binaries.shtml)
+7. NCL    plot software (https://www.ncl.ucar.edu/Download/)
 =======================================================================
 Optional for multi-processor (parallel) program execution:
 -----------------------------------------------------------------------
@@ -34,14 +34,14 @@ All required software is available in free open source packages.
 7. Under "Options" deselect "Run with GUI" and select "Write Output".
 8. Click on the button "Save & Exit" to build the model. 
 
-Additional Ensemble Notes
+Additional Notes for Ensemble Version
 =======================================================================
- 9. Use "cp plasim/run/* ensemble_data/template/" to copy from run to template directory.
-10. Use "rm ensemble_data/template/most_plasim_run" to remove the origional model script.
+ 9. Use "cp plasim/run/* ensemble_runs/template/" to copy from run to template directory.
+10. Use "rm ensemble_runs/template/most_plasim_run" to remove the origional model script.
 11. Check/Change namelists and surface files in template folder.
 
-12. Edit "ensemble_data/template/most_plasim_run_mod" to edit run procedure and section lengths.
-    Edit "ensemble_data/ensemble_plasim_run" to edit ensemble procedure and model counts.
+12. Edit "ensemble_runs/template/most_plasim_run_mod" to edit run procedure and section lengths.
+    Edit "ensemble_runs/ensemble_plasim_run" to edit ensemble procedure and model counts.
 13. Run "./ensemble_plasim_run"
     Updates will appear on console and in "ensemble_status.txt".
 
@@ -49,7 +49,7 @@ Additional Ensemble Notes
     "ensemble_postProcess" will re-postprocess the runs.
     Warning: Do NOT run "ensemble_plasim_run" and "ensemble_postProcess" at the same time.
              Variables for run and section counts will overwrite each other. 
-15. Pre-made ncl plotting codes are located in "plots".
+15. Pre-made NCL plotting codes are located in "plots".
     "ensemble_plots" runs all ncl code in the current and sub-directories.
     
 16. Per aspera ad astra

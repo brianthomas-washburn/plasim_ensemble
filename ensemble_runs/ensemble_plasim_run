@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# This script was made by Cody Ratterman to build and run climate study 
+# ensembles in PlaSim from a single seed model in "template" directory.
+# ---------------------------------------------------------------- #
+# ------------ Set inital and final run numbers here. ------------ #
+# ---------------------------------------------------------------- #
+# (So, ENDNUM defines the total number of ensemble members)
+STARTNUM=1 # number for first run
+           # start at 1 for plotting compatibility
+           
+ENDNUM=3   # number for final run
+           # STARTNUM < ENDNUM < 100 
+           
+#       *** model naming pattern can be changed below ***
+# ---------------------------------------------------------------- #
+# ---------------------------------------------------------------- #
+
+echo "Ensemble run start time: "
+date
+
+echo "First Run: $STARTNUM"
+echo "Final Run: $ENDNUM"
+echo "Run Count: `expr $ENDNUM - $STARTNUM + 1`"
+
+if { [ $STARTNUM -eq 0 ] || [ $STARTNUM -eq 1 ]; }
+then
+    rm -r ensembleRun.* 2> /dev/null    # clear old runs from current directory 
+    echo "Ensemble Status" > ensemble_status.txt  # Overwrite status file
+else
+    echo "Ensemble Status" >> ensemble_status.txt # Append to status file
+fi
+
+date >> ensemble_status.txt  # Show start date/time
+ 
+for (( num=$STARTNUM; num<=$ENDNUM; num++ )); do # loop for each run number from STARTNUM to ENDNUM
+    ENSEMBLEDIR=$(printf 'ensembleRun.%02d' $num) # new run directory name
+    
+    mkdir $ENSEMBLEDIR              # make a new run directory
+    cp -r 'template/'* $ENSEMBLEDIR # copy from template to new run directory
+    
+    cd $ENSEMBLEDIR                 # go into new run directory
+    rm PostProcessing/PP_NL_*
+    rm -r suggested_namelists/
+    echo "ensemble run $num in progress" >> ../ensemble_status.txt
+   
+    sed -i -e 's/EXP=.*/EXP=ensemble.'$(printf '%02d' $num)'/' most_plasim_run_mod # <----- rename models here
+    ./most_plasim_run_mod           # run the model
+    
+    cd ..                           # exit current run directory
+    echo "ensemble run $num fully completed" >> ensemble_status.txt # append to status file
+    date >> ensemble_status.txt # Show recent model completion date/time
+done
+
+echo "end of ensemble script"
+echo "end time: "
+date
