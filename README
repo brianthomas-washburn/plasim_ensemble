@@ -45,7 +45,7 @@ Additional Notes for Ensemble Version
 13. Run "./ensemble_plasim_run"
     Updates will appear on console and in "ensemble_status.txt".
 
-14. "ensemble_plasim_run" also does postprocessing.
+14. "ensemble_plasim_run" also does postprocessing (by way of most_plasim_run_mod script)
     "ensemble_postProcess" will re-postprocess the runs.
     Warning: Do NOT run "ensemble_plasim_run" and "ensemble_postProcess" at the same time.
              Variables for run and section counts will overwrite each other. 
