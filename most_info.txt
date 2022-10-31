@@ -1,0 +1,13 @@
+
+System info for <phy06734>
+Architecture: Linux phy06734 5.4.0-126-generic #142-Ubuntu SMP Fri Aug 26 12:12:57 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Endian format             : little endian
+FORTRAN control word size : 4 bytes
+FORTRAN integer size      : 4 bytes
+FORTRAN real    size      : 4 bytes
+C       int     size      : 4 bytes
+C       float   size      : 4 bytes
+C       long    size      : 8 bytes
+C  long long    size      : 8 bytes
+FORTRAN Compiler: gfortran
+C       Compiler: gcc
