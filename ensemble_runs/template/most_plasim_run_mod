@@ -5,16 +5,17 @@
 # ------------ Set length of sections and parts of runs here. (in years) ------------ #
 # --- number of sections rounds down if *_YEARS variable is not divisible by YEARS -- #
 # ----------------------------------------------------------------------------------- #
-YEARS=1 # years in a section (**not the full run**)
+YEARS=100 # years in a section (**not the full run**)
 
 CLIMA_YEARS=0 # years to run with prescribed climatology parameters
 
-CONTROL_YEARS=1 # years to run with calculated parameters and control ozone profile
+CONTROL_YEARS=100 # years to run with calculated parameters and control ozone profile
 
-SNCASE_YEARS=1 # years to run with calculated parameters and supernova case ozone profile
+SNCASE_YEARS=100 # years to run with calculated parameters and supernova case ozone profile
 
-CONTROL_OZONE_PROFILE='../O3profiles/N032_level_0237_Control-NOspe-Dec.sra' # Control case ozone data
-SNCASE_OZONE_PROFILE='../O3profiles/N032_level_0237_50pcSNCR-B-300yr.sra' # Supernova case ozone data
+CONTROL_OZONE_PROFILE='../O3profiles/N032_level_0237_controlRun_19July2021_r10_startYr1993.sra' # Control case ozone data
+#'../O3profiles/N032_level_0237_Control-NOspe-Dec.sra' # Control case ozone data
+SNCASE_OZONE_PROFILE='../O3profiles/N032_level_0237_SNCR20pc_100yr_31Aug2021_r10_startYr1993.sra' # Supernova case ozone data
 O3OPT=2 # flag for radmod to use O3 profile from file (2 to read from file)
 # ! (Make sure the radmod_namelist has NO3 in it or this will not work)
 # You can also run using 0 for no O3 or 1 for idealized O3
@@ -60,7 +61,9 @@ main() {
 
     # Set ozone profile as control case
     cp $CONTROL_OZONE_PROFILE ./N032_level_0237.sra
+    echo " "
     echo "Climatology Control Case"
+    echo "O3 profile file: " $CONTROL_OZONE_PROFILE
 
     SECTION_NUM=0
     while [ $SECTION_NUM -lt $CLIMA_SECTIONS ] # loop for each section in run
@@ -75,7 +78,10 @@ main() {
     sed -i -e 's/NICE.*/NICE=1/' icemod_namelist
     sed -i -e 's/NLANDT.*/NLANDT=1/' landmod_namelist
 
+    echo " "
     echo "Control Case"
+    echo "O3 profile file: " $CONTROL_OZONE_PROFILE
+    
 
     while [ $SECTION_NUM -lt $((CLIMA_SECTIONS + CONTROL_SECTIONS)) ] # loop for each section in run
     do
@@ -86,7 +92,9 @@ main() {
 
     # Set ozone profile as supernova case
     cp $SNCASE_OZONE_PROFILE ./N032_level_0237.sra
+    echo " "
     echo "Supernova Case"
+    echo "O3 profile file: ", $SNCASE_OZONE_PROFILE
 
     while [ $SECTION_NUM -lt $TOTAL_SECTIONS ] # loop for each section in run
     do
