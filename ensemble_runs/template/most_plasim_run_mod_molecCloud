@@ -5,7 +5,7 @@
 # ------------ Set length of sections and parts of runs here. (in years) ------------ #
 # --- number of sections rounds down if *_YEARS variable is not divisible by YEARS -- #
 # ----------------------------------------------------------------------------------- #
-YEARS=( 100 100 ) # years in a section (**not the full run**)
+YEARS=( 2  2 ) # years in a section (**not the full run**)
 SECNUM=1 #number of sections minus 1
 CURYEARS=0
 declare -i TYEARS
@@ -74,8 +74,8 @@ main() {
 	echo "Solar Constant Section" $SECTION_NUM
 	echo "---"
         run_section
-	post_process
-	clean_up
+	#post_process
+	#clean_up
 	SECTION_NUM=`expr $SECTION_NUM + 1`
     done
     

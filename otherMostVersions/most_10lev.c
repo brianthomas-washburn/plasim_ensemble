@@ -357,7 +357,7 @@ int CatSim = 51;          // simulation setup number for CAT
 
 int Latitudes       = 32; // Number of latitudes in atmosphere
 int Latitude2       = 32; // Number of latitudes for 2nd. instance
-int Levels          = 18; //10; // Number of levels in atmosphere
+int Levels          = 10; // Number of levels in atmosphere
 int Cores           =  1; // Number of cores for parallel version
 int Multirun        =  1; // Number of coupled runs
 int MultirunEnabled =  0; // Multirun module present?

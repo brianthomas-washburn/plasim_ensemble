@@ -1,3 +1,5 @@
- &oceanmod_nl
- NOCEAN      =     1
- /END
+&oceanmod_nl
+  NOCEAN=1
+  NHDIFF=1
+  HDIFFK=4.E4
+  /END

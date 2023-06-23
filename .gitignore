@@ -1,8 +1,30 @@
 
-ensemble_runs/runsOutput/*
 
 *.log
 
 *.x
 
-ensemble_runs/ensembleRun.01/
+*~
+
+
+ensemble_status.txt
+
+ensemble_runs/ensembleRun.*
+
+ensemble_runs/runsOutput/
+
+ensemble_runs/template/otherExecutables
+ensemble_runs/template/section*
+ensemble_runs/template/*_output
+ensemble_runs/template/plasim_restart
+ensemble_runs/template/PostProcessing/*nc
+ensemble_runs/template/PostProcessing/*txt
+
+ensemble_runs/template/test.sh*
+
+ensemble_runs/plots/*/*png
+
+plasim/bin/
+plasim/bld/
+plasim/run/
+

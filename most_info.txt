@@ -1,6 +1,6 @@
 
 System info for <phy06734>
-Architecture: Linux phy06734 5.4.0-126-generic #142-Ubuntu SMP Fri Aug 26 12:12:57 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Architecture: Linux phy06734 5.15.0-75-generic #82-Ubuntu SMP Tue Jun 6 23:10:23 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
 Endian format             : little endian
 FORTRAN control word size : 4 bytes
 FORTRAN integer size      : 4 bytes
